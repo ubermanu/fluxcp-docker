@@ -3,7 +3,9 @@ FROM php:7.4-cli-alpine
 RUN apk add git
 RUN git clone https://github.com/rathena/FluxCP /fluxcp
 
-RUN docker-php-ext-install pdo pdo_mysql
+RUN apk add --no-cache zip libzip-dev libpng-dev
+RUN docker-php-ext-configure zip
+RUN docker-php-ext-install pdo pdo_mysql zip gd mysqli
 
 COPY ./config/application-env.php ./config/servers-env.php /fluxcp/config/
 
