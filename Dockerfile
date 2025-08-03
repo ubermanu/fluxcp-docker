@@ -19,6 +19,8 @@ COPY ./config/application-env.php ./config/servers-env.php /fluxcp/config/
 RUN sed -i 's/application.php/application-env.php/g' /fluxcp/index.php && \
     sed -i 's/servers.php/servers-env.php/g' /fluxcp/index.php
 
+RUN docker-php-ext-enable pdo pdo_mysql zip gd mysqli
+
 ENV BASE_PATH="" \
     SITE_TITLE="Flux Control Panel" \
     INSTALLER_PASSWORD=secretpassword \
