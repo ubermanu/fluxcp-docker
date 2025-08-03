@@ -1,7 +1,8 @@
 FROM php:7.4-cli-alpine
 
 RUN apk add git
-RUN git clone https://github.com/rathena/FluxCP /fluxcp
+RUN git clone https://github.com/rathena/FluxCP /fluxcp --depth=1
+RUN rm -rf /fluxcp/.git
 
 RUN apk add --no-cache tini zip libzip-dev libpng-dev
 RUN docker-php-ext-configure zip
